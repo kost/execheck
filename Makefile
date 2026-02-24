@@ -1,4 +1,4 @@
-# Makefile for cross-compiling Sharetty
+# Makefile for cross-compiling
 
 APP_NAME = execheck
 OUT_DIR = bin
@@ -12,7 +12,7 @@ TARGET_LINUX_RISCV64 = riscv64gc-unknown-linux-gnu
 
 # Windows Targets (GNU)
 TARGET_WIN_X64 = x86_64-pc-windows-gnu
-# TARGET_WIN_X86 = i686-pc-windows-gnu
+TARGET_WIN_X86 = i686-pc-windows-gnu
 
 # Windows Targets (MSVC)
 TARGET_WIN_MSVC_X64 = x86_64-pc-windows-msvc
@@ -25,18 +25,19 @@ TARGET_MAC_ARM64 = aarch64-apple-darwin
 
 # BSD Targets
 TARGET_FREEBSD_X64 = x86_64-unknown-freebsd
+TARGET_FREEBSD_X86 = i686-unknown-freebsd
 # NetBSD fails due to pty-process dependency issue
-# TARGET_NETBSD_X64 = x86_64-unknown-netbsd
+TARGET_NETBSD_X64 = x86_64-unknown-netbsd
 # OpenBSD fails due to lack of cross docker image
-# TARGET_OPENBSD_X64 = x86_64-unknown-openbsd
+TARGET_OPENBSD_X64 = x86_64-unknown-openbsd
 
 # Group Targets
 LINUX_TARGETS = $(TARGET_LINUX_X64) $(TARGET_LINUX_X86) $(TARGET_LINUX_ARM64) $(TARGET_LINUX_ARMV7) $(TARGET_LINUX_RISCV64)
-WINDOWS_TARGETS = $(TARGET_WIN_X64)
+WINDOWS_TARGETS = $(TARGET_WIN_X64) $(TARGET_WIN_X86)
 MSVC_TARGETS = $(TARGET_WIN_MSVC_X64)
-MAC_TARGETS = 
+MAC_TARGETS =
 MACOS_TARGETS = $(TARGET_MAC_X64) $(TARGET_MAC_ARM64)
-BSD_TARGETS = $(TARGET_FREEBSD_X64)
+BSD_TARGETS = $(TARGET_FREEBSD_X64) $(TARGET_FREEBSD_X86)
 
 ALL_TARGETS = $(LINUX_TARGETS) $(WINDOWS_TARGETS) $(MAC_TARGETS) $(BSD_TARGETS)
 
