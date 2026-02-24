@@ -1,0 +1,38 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Cargo
+Cargo.lock
+/.cargo/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Byproducts
+*.log
+*.out
+*.dSYM/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Coverage
+/coverage/
+*.profraw
+*.profdata
+
+# Misc
+*.old
+*.orig
+*.rej
