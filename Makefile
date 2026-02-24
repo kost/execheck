@@ -72,8 +72,8 @@ define BUILD_TARGET
 $(1):
 	@echo "Building for $(1)..."
 	CARGO_TARGET_DIR=target/$(1) RUSTFLAGS="$(RUSTFLAGS_COMMON)" cross build --release --target $(1)
-	@mkdir -p $(OUT_DIR)/$(1)
-	@cp target/$(1)/$(1)/release/$(APP_NAME)* $(OUT_DIR)/$(1)/
+	@mkdir -p $(OUT_DIR)
+	@cp target/$(1)/$(1)/release/$(APP_NAME) $(OUT_DIR)/$(APP_NAME)-$(1)
 endef
 
 # Build rule for Windows targets (static CRT)
@@ -81,8 +81,8 @@ define BUILD_WINDOWS_TARGET
 $(1):
 	@echo "Building for $(1) (Windows)..."
 	CARGO_TARGET_DIR=target/$(1) RUSTFLAGS="-C target-feature=+crt-static $(RUSTFLAGS_COMMON)" cross build --release --target $(1)
-	@mkdir -p $(OUT_DIR)/$(1)
-	@cp target/$(1)/$(1)/release/$(APP_NAME).exe $(OUT_DIR)/$(1)/
+	@mkdir -p $(OUT_DIR)
+	@cp target/$(1)/$(1)/release/$(APP_NAME).exe $(OUT_DIR)/$(APP_NAME)-$(1).exe
 endef
 
 # MSVC Targets (for GitHub Actions / Windows env)
@@ -90,8 +90,8 @@ define BUILD_MSVC_TARGET
 $(1):
 	@echo "Building for $(1) (Windows MSVC)..."
 	CARGO_TARGET_DIR=target/$(1) RUSTFLAGS="-C target-feature=+crt-static $(RUSTFLAGS_COMMON)" cargo build --release --target $(1)
-	@mkdir -p $(OUT_DIR)/$(1)
-	@cp target/$(1)/$(1)/release/$(APP_NAME).exe $(OUT_DIR)/$(1)/
+	@mkdir -p $(OUT_DIR)
+	@cp target/$(1)/$(1)/release/$(APP_NAME).exe $(OUT_DIR)/$(APP_NAME)-$(1).exe
 endef
 
 # macOS Targets (for GitHub Actions / macOS env)
@@ -99,8 +99,8 @@ define BUILD_MACOS_TARGET
 $(1):
 	@echo "Building for $(1) (macOS)..."
 	CARGO_TARGET_DIR=target/$(1) RUSTFLAGS="$(RUSTFLAGS_COMMON)" cargo build --release --target $(1)
-	@mkdir -p $(OUT_DIR)/$(1)
-	@cp target/$(1)/$(1)/release/$(APP_NAME) $(OUT_DIR)/$(1)/
+	@mkdir -p $(OUT_DIR)
+	@cp target/$(1)/$(1)/release/$(APP_NAME) $(OUT_DIR)/$(APP_NAME)-$(1)
 endef
 
 $(foreach target,$(MSVC_TARGETS),$(eval $(call BUILD_MSVC_TARGET,$(target))))
